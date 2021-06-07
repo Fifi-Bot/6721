@@ -60,6 +60,6 @@ extensions = [
 for ext in extensions:
     bot.load_extension(ext)
 
-server.start()
+#server.start()
 
 bot.run(TOKEN)
