@@ -51,11 +51,11 @@ class Music(commands.Cog):
                     await ctx.send(f'<a:loading:829244740293099530> Searching for `{url}` in YouTube.. Please Wait')
                     await player.queue(url, bettersearch=True)
                     song = await player.play()
-                    await ctx.send(f"<:playbutton:829248766904762408> Now Playing `{song.name}`")
+                    await ctx.send(f"<:darkblue_play_button:851357355693834241> Now Playing `{song.name}`")
                 else:
                     await ctx.send(f'<a:loading:829244740293099530> Searching for `{url}` in YouTube.. Please Wait')
                     song = await player.queue(url, bettersearch=True)
-                    await ctx.send(f"Queued `{song.name}`")
+                    await ctx.send(f"<:darkblue_queue_button:851357355232722976> Queued `{song.name}`")
             except:
                 await ctx.send('This is an error. It is probably because of YouTube. Please try again!')
         else:
@@ -67,11 +67,11 @@ class Music(commands.Cog):
                     await ctx.send(f'<a:loading:829244740293099530> Searching for `{url}` in YouTube.. Please Wait')
                     await player.queue(url, bettersearch=True)
                     song = await player.play()
-                    await ctx.send(f"<:playbutton:829248766904762408>  Now Playing `{song.name}`")
+                    await ctx.send(f"<:darkblue_play_button:851357355693834241> Now Playing `{song.name}`")
                 else:
                     await ctx.send(f'<a:loading:829244740293099530> Searching for `{url}` in YouTube.. Please Wait')
                     song = await player.queue(url, bettersearch=True)
-                    await ctx.send(f"Queued `{song.name}`")
+                    await ctx.send(f"<:darkblue_queue_button:851357355232722976> Queued `{song.name}`")
             except:
                 await ctx.send('This is an error. It is probably because of YouTube. Please try again!')
 
@@ -98,7 +98,7 @@ class Music(commands.Cog):
         try:
             player = music.get_player(guild_id=ctx.guild.id)
             song = await player.pause()
-            await ctx.reply(f"<:pausebutton:829251301929517116> Paused `{song.name}`")
+            await ctx.reply(f"<:darkblue_pause_button:851357355534712853> Paused `{song.name}`")
         except:
             await ctx.reply('Nothing is currently playing right now.')
 
@@ -107,7 +107,7 @@ class Music(commands.Cog):
         try:
             player = music.get_player(guild_id=ctx.guild.id)
             song = await player.resume()
-            await ctx.reply(f"<:playbutton:829248766904762408> Resumed `{song.name}`")
+            await ctx.reply(f"<:darkblue_play_button:851357355693834241> Resumed `{song.name}`")
         except:
             await ctx.reply('Nothing is currently playing right now.')
 
@@ -115,7 +115,7 @@ class Music(commands.Cog):
     async def stop(self, ctx):
         player = music.get_player(guild_id=ctx.guild.id)
         await player.stop()
-        await ctx.reply("<:pausebutton:829251301929517116> Stopped playing music!")
+        await ctx.reply("<:darkblue_stop_button:851357355669192704> Stopped playing music!")
 
     @commands.command(aliases = ['l'])
     async def loop(self, ctx):
@@ -154,14 +154,14 @@ class Music(commands.Cog):
         player = music.get_player(guild_id=ctx.guild.id)
         embed = discord.Embed(
               color = discord.Color.purple(),
-              title = 'Queue: ',
+              title = '<:darkblue_queue_button:851357355232722976> Queue <:darkblue_queue_button:851357355232722976>',
               description = "\n".join([song.name for song in player.current_queue()])
             )
         await ctx.reply(embed=embed)
       except: #AttributeError
          embed = discord.Embed(
               color = discord.Color.purple(),
-              title = 'Queue: ',
+              title = '<:darkblue_queue_button:851357355232722976> Queue <:darkblue_queue_button:851357355232722976>',
               description = "There is no music in the queue!"
          )
          await ctx.reply(embed=embed)
@@ -177,7 +177,7 @@ class Music(commands.Cog):
             if song.duration == 0.0:
                 embed = discord.Embed(
                 color = discord.Color.purple(),
-                    title = '⏯️ Now/Currently Playing:',
+                    title = '<:darkblue_play_pause_button:851357357274562560> Now/Currently Playing:',
                     description = f'[{song.name}]({song.url} "Takes you to the YouTube Video!")'
                 )
                 embed.set_thumbnail(url = song.thumbnail)
@@ -187,7 +187,7 @@ class Music(commands.Cog):
             else:
                 embed = discord.Embed(
                   color = discord.Color.purple(),
-                  title = '⏯️ Now/Currently Playing:',
+                  title = '<:darkblue_play_pause_button:851357357274562560> Now/Currently Playing:',
                   description = f'[{song.name}]({song.url} "Takes you to the YouTube Video!")'
                 )
                 embed.set_thumbnail(url = song.thumbnail)
@@ -198,7 +198,7 @@ class Music(commands.Cog):
         except:
             embed = discord.Embed(
                 color = discord.Color.purple(),
-                title = '⏯️ Now/Currently Playing:',
+                title = '<:darkblue_play_pause_button:851357357274562560> Now/Currently Playing:',
                 description = f'Nothing is currently playing right now!'
             )
             await ctx.reply(embed=embed)
@@ -208,9 +208,9 @@ class Music(commands.Cog):
         player = music.get_player(guild_id=ctx.guild.id)
         data = await player.skip(force=True)
         if len(data) == 2:
-            await ctx.reply(f"Skipped from `{data[0].name}` to `{data[1].name}`")
+            await ctx.reply(f"<:darkblue_next_button:851357357085556736> Skipped from `{data[0].name}` to `{data[1].name}`")
         else:
-            await ctx.reply(f"Skipped `{data[0].name}`")
+            await ctx.reply(f"<:darkblue_next_button:851357357085556736> Skipped `{data[0].name}`")
 
 def setup(bot):
     bot.add_cog(Music(bot))
